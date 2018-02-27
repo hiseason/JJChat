@@ -1,0 +1,62 @@
+//
+//  PrefixHeader.pch
+//  Huanxin
+//
+//  Created by 郝旭珊 on 2018/2/23.
+//  Copyright © 2018年 郝旭珊. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#define KNOTIFICATION_LOGINCHANGE @"loginStateChange"
+#define KNOTIFICATIONNAME_DELETEALLMESSAGE @"RemoveAllMessages"
+
+#import <Hyphenate/Hyphenate.h>
+#import <EaseUI.h>
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+// 如果不需要红包功能，直接把这个REDPACKET_AVALABLE宏注释掉，然后：
+
+// 1.删掉红包相关代码：注释掉后，建议在xcode中搜索“REDPACKET_AVALABLE”，然后删掉相关代码；
+
+//#define REDPACKET_AVALABLE
+
+// 如果不需要语音通话功能，直接把这个宏注释掉或者改成0，然后：
+// 1.删掉音视频相关代码：注释掉后，建议在xcode中搜索“DEMO_CALL”，然后删掉相关代码；
+// 2.隐藏音视频通话按钮：EaseChatBarMoreView.m  第115-131行代码注释掉。
+#define DEMO_CALL 1 // 1：启用音视频通话；0：禁用音视频通话
+
+#ifdef __OBJC__
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "ChatUIDefine.h"
+#import "EMAlertView.h"
+#import "TTGlobalUICommon.h"
+//#import "EaseUI.h"
+#import <EaseUI/EaseUI.h>
+
+#if DEMO_CALL == 1
+#import <Hyphenate/Hyphenate.h>// 包含音视频通话功能
+#else
+#import <HyphenateLite/HyphenateLite.h>// 不包含音视频通话功能
+#endif
+
+#import "AVOSCloud/AVOSCloud.h"// 后端云LeanCloud
+#import "UserCacheManager.h"
+#import "UserWebManager.h"
+#import "YYCategories.h"
+
+#endif
+
+
+#endif /* PrefixHeader_pch */
